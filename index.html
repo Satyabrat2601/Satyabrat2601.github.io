@@ -1,36 +1,67 @@
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Satyabrat Rath</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>Satyabrat Rath</title>
 
-        body{
-            max-width:900px;
-            margin:auto;
-            padding:40px;
-            font-family:Arial,sans-serif;
-            line-height:1.8;
-            background:#111;
-            color:white;
-        }
+<style>
 
-        a{
-            color:#4ea1ff;
-        }
+body{
+    max-width:1000px;
+    margin:auto;
+    padding:40px;
+    font-family:Arial,sans-serif;
+    line-height:1.8;
+    background:#111;
+    color:white;
+}
 
-        h1{
-            margin-bottom:0;
-        }
+h1{
+    margin-bottom:5px;
+}
 
-        h2{
-            border-bottom:1px solid #444;
-            padding-bottom:5px;
-            margin-top:40px;
-        }
+h2{
+    border-bottom:1px solid #444;
+    padding-bottom:5px;
+    margin-top:40px;
+}
 
-    </style>
+a{
+    color:#4ea1ff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+nav{
+    margin-top:10px;
+    margin-bottom:30px;
+}
+
+nav a{
+    margin-right:15px;
+}
+
+li{
+    margin-bottom:12px;
+}
+
+.publications li{
+    margin-bottom:20px;
+}
+
+.contact{
+    margin-top:20px;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -38,77 +69,164 @@
 <h1>Satyabrat Rath</h1>
 
 <p>
-Research Associate<br>
+Institute Post Doctoral Fellow<br>
 Indian Institute of Technology Kharagpur
 </p>
 
 <p>
-Cryptography • Secure Computation • Post-Quantum Cryptography
+Cryptography • Secure Computation • Post-Quantum Cryptography • Quantum Key Distribution
 </p>
+
+<nav>
+<a href="#about">About</a>
+<a href="#research">Research</a>
+<a href="#education">Education</a>
+<a href="#experience">Experience</a>
+<a href="#publications">Publications</a>
+<a href="#contact">Contact</a>
+</nav>
 
 <p>
-<a href="https://github.com/Satyabrat2601">GitHub</a>
+<a href="https://github.com/Satyabrat2601" target="_blank">GitHub</a>
 </p>
 
-<h2>About Me</h2>
+<h2 id="about">About Me</h2>
 
 <p>
-I am a researcher specializing in cryptography,
-secure outsourcing, verifiable computation,
-and post-quantum cryptography.
-My research focuses on designing efficient and secure
-computation models for untrusted cloud environments.
+I am a researcher specializing in cryptography, secure outsourcing,
+verifiable computation, and post-quantum cryptography.
+My research focuses on designing secure and efficient computation
+frameworks for untrusted cloud environments and privacy-preserving
+cryptographic applications.
 </p>
 
-<h2>Research Interests</h2>
+<h2 id="research">Research Interests</h2>
 
 <ul>
 <li>Cryptography</li>
 <li>Post-Quantum Cryptography</li>
 <li>Secure Outsourcing</li>
-<li>Verifiable Computation</li>
-<li>Quantum Computing</li>
+<li>Secure and Verifiable Computation</li>
 <li>Quantum Key Distribution</li>
+<li>Quantum Computing</li>
+<li>Number Theory</li>
+<li>Linear Algebra</li>
 </ul>
 
-<h2>Education</h2>
+<h2 id="education">Education</h2>
 
 <ul>
-<li>PhD, NIT Karnataka Surathkal (2025)</li>
-<li>Integrated MSc Mathematics, NIT Rourkela</li>
+<li>
+<b>Ph.D. in Mathematical and Computational Sciences</b><br>
+National Institute of Technology Karnataka, Surathkal (2025)
+</li>
+
+<li>
+<b>Integrated M.Sc. in Mathematics</b><br>
+National Institute of Technology Rourkela
+</li>
 </ul>
 
-<h2>Experience</h2>
+<h2 id="experience">Experience</h2>
 
 <ul>
-<li>Research Associate, IIT Kharagpur</li>
-<li>Research Associate, IIITDM Kurnool</li>
-<li>Research Assistant, NITK Surathkal</li>
+<li>
+<b>Institute Post Doctoral Fellow</b><br>
+Indian Institute of Technology Kharagpur
+</li>
+
+<li>
+<b>Research Associate</b><br>
+IIITDM Kurnool
+</li>
+
+<li>
+<b>Research Assistant</b><br>
+NITK Surathkal
+</li>
 </ul>
 
-<h2>Publications</h2>
+<h2 id="publications">Publications</h2>
+
+<ol class="publications">
+
+<li>
+Jothi Ramalingam, <b>Satyabrat Rath</b>, Lakshmi Kuppusamy, Cheng Chi-Lee.
+<i>Accelerating QKD Post-Processing by Secure Offloading of Information Reconciliation</i>.
+Computers and Electrical Engineering (Elsevier).
+<a href="https://doi.org/10.1016/j.compeleceng.2024.109721" target="_blank">DOI</a>
+</li>
+
+<li>
+<b>Satyabrat Rath</b>, Jothi Ramalingam, Sohham Seal.
+<i>A Note on "Secure and Efficient Outsourcing of PCA-Based Face Recognition"</i>.
+IEEE Transactions on Information Forensics and Security.
+<a href="https://doi.org/10.1109/TIFS.2025.3526057" target="_blank">DOI</a>
+</li>
+
+<li>
+<b>Satyabrat Rath</b>, Jothi Ramalingam.
+<i>Comment on "Outsourcing Eigen-Decomposition and Singular Value Decomposition of Large Matrix to a Public Cloud"</i>.
+IEEE Access.
+<a href="https://doi.org/10.1109/ACCESS.2024.3443095" target="_blank">DOI</a>
+</li>
+
+<li>
+<b>Satyabrat Rath</b>, Jothi Ramalingam, Cheng-Chi Lee.
+<i>On Efficient Parallel Secure Outsourcing of Modular Exponentiation to Cloud for IoT Applications</i>.
+Mathematics (MDPI), 2024.
+<a href="https://doi.org/10.3390/math12050713" target="_blank">DOI</a>
+</li>
+
+<li>
+<b>Satyabrat Rath</b>, Jothi Rangasamy.
+<i>Privacy-Preserving Outsourcing Algorithm for Solving Large Systems of Linear Equations</i>.
+SN Computer Science (Springer).
+<a href="https://doi.org/10.1007/s42979-023-02093-5" target="_blank">DOI</a>
+</li>
+
+<li>
+Veeresh R. Maned, <b>Satyabrat Rath</b>, Jothi Ramalingam, Lakshmidevi Kuppusamy.
+<i>Enhancing Quantum Key Distribution via McEliece-Based Hybrid PQC-QKD Architecture</i>.
+EPJ Quantum Technology.
+<a href="https://doi.org/10.1140/epjqt/s40507-026-00498-8" target="_blank">DOI</a>
+</li>
+
+<li>
+Veeresh R. Maned, <b>Satyabrat Rath</b>, Jothi Ramalingam, Lakshmidevi Kuppusamy.
+<i>Enhancing IoT Security through Cloud-Assisted Post-Quantum Authentication: A Case Study with UOV Signatures</i>.
+Scientific Reports (Nature).
+<a href="https://doi.org/10.1038/s41598-026-43611-8" target="_blank">DOI</a>
+</li>
+
+</ol>
+
+<h2 id="contact">Contact</h2>
+
+<div class="contact">
 
 <p>
-7+ peer-reviewed publications in
-IEEE, Elsevier, Nature Scientific Reports,
-EPJ Quantum Technology, and Springer.
+📧 Email:
+<a href="mailto:rathsatyabrat26196@gmail.com">
+rathsatyabrat26196@gmail.com
+</a>
 </p>
 
-<h2>Programming</h2>
+<p>
+💻 GitHub:
+<a href="https://github.com/Satyabrat2601" target="_blank">
+github.com/Satyabrat2601
+</a>
+</p>
 
-<ul>
-<li>Python</li>
-<li>C++</li>
-<li>MATLAB</li>
-<li>LaTeX</li>
-</ul>
+</div>
 
-<h2>Contact</h2>
+<hr>
 
 <p>
-Email:
-rathsatyabrat26196@gmail.com
+© 2026 Satyabrat Rath
 </p>
 
 </body>
 </html>
+```
