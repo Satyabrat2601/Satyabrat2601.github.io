@@ -2,1145 +2,914 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#07111f">
-<meta name="description" content="Satyabrat Rath — cryptography researcher at IIT Kharagpur working on lattice-based post-quantum protocols and secure outsourcing.">
-<meta property="og:title" content="Satyabrat Rath | Cryptography Research">
-<meta property="og:description" content="Institute Post Doctoral Fellow at IIT Kharagpur working on lattice-based post-quantum cryptography and secure outsourcing.">
-<meta property="og:type" content="website">
-
-<title>Satyabrat Rath | Cryptography Research</title>
-
-<style>
-:root{
-    --bg: #07111f;
-    --bg-soft: #0d1728;
-    --card: rgba(11, 19, 34, 0.82);
-    --card-border: rgba(255, 255, 255, 0.09);
-    --text: #ecf3ff;
-    --text-strong: #f5f8ff;
-    --muted: #b8c4d9;
-    --subtle: #6e7f9b;
-    --accent: #7dd3fc;
-    --accent-2: #a78bfa;
-    --accent-3: #2dd4bf;
-    --shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
-    --radius: 24px;
-}
-
-*{
-    box-sizing: border-box;
-}
-
-html{
-    scroll-behavior: smooth;
-}
-
-body{
-    margin: 0;
-    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.7;
-    color: var(--text);
-    background:
-        radial-gradient(circle at top left, rgba(125, 211, 252, 0.18), transparent 30%),
-        radial-gradient(circle at top right, rgba(167, 139, 250, 0.15), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(45, 212, 191, 0.12), transparent 22%),
-        linear-gradient(180deg, #08111e 0%, #0b1322 52%, #07111f 100%);
-    min-height: 100vh;
-}
-
-body::before{
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-        radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1.5px);
-    background-size: 42px 42px;
-    mask-image: radial-gradient(circle at center, black, transparent 72%);
-    pointer-events: none;
-}
-
-a{
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
-}
-
-a:hover{
-    color: #d8f3ff;
-}
-
-.page{
-    position: relative;
-    z-index: 1;
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 28px 24px 42px;
-}
-
-.topbar{
-    position: sticky;
-    top: 16px;
-    z-index: 20;
-    margin-bottom: 24px;
-    padding: 12px 14px;
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    background: rgba(8, 16, 29, 0.78);
-    backdrop-filter: blur(14px);
-    box-shadow: var(--shadow);
-}
-
-.nav{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-}
-
-.nav a{
-    padding: 10px 14px;
-    border-radius: 999px;
-    color: var(--muted);
-    font-size: 0.94rem;
-    letter-spacing: 0.01em;
-    position: relative;
-    overflow: hidden;
-}
-
-.nav a:hover{
-    color: var(--text-strong);
-    background: rgba(255,255,255,0.06);
-}
-
-.nav a::before{
-    content: "";
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 6px;
-    height: 2px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.25s ease;
-}
-
-.nav a.is-active{
-    color: var(--text-strong);
-    background: rgba(125, 211, 252, 0.14);
-    box-shadow: inset 0 0 0 1px rgba(125, 211, 252, 0.18);
-}
-
-.nav a.is-active::before{
-    transform: scaleX(1);
-}
-
-.hero{
-    display: grid;
-    grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
-    gap: 28px;
-    align-items: center;
-    padding: 28px;
-    border: 1px solid var(--card-border);
-    border-radius: calc(var(--radius) + 6px);
-    background: linear-gradient(145deg, rgba(12, 20, 36, 0.92), rgba(9, 16, 30, 0.84));
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
-
-.hero::before{
-    background-image:
-        radial-gradient(circle, rgba(236, 243, 255, 0.16) 1.2px, transparent 1.6px),
-        radial-gradient(circle, rgba(125, 211, 252, 0.1) 1px, transparent 1.6px);
-    background-size: 24px 24px, 24px 24px;
-    background-position: 0 0, 12px 12px;
-    opacity: 0.45;
-    mask-image: radial-gradient(circle at 52% 44%, black 0, black 56%, transparent 84%);
-    animation: lattice-drift 24s linear infinite;
-}
-
-@keyframes lattice-drift{
-    0%{
-        background-position: 0 0, 12px 12px;
-    }
-    100%{
-        background-position: 24px 24px, 36px 36px;
-    }
-}
-
-.portrait{
-    position: relative;
-    padding: 14px;
-    border-radius: 30px;
-    isolation: isolate;
-}
-
-.portrait::before{
-    content: "";
-    position: absolute;
-    inset: -6px;
-    border-radius: 34px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
-    filter: blur(14px);
-    opacity: 0.35;
-    z-index: -1;
-    animation: ring-shift 14s ease-in-out infinite;
-}
-
-.portrait::after{
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: none;
-    pointer-events: none;
-    z-index: 2;
-}
-
-@keyframes ring-shift{
-    0%, 100%{
-        filter: blur(10px) hue-rotate(0deg);
-    }
-    50%{
-        filter: blur(12px) hue-rotate(40deg);
-    }
-}
-
-.portrait img{
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 2px;
-    object-fit: cover;
-    aspect-ratio: 1 / 1.2;
-    position: relative;
-    z-index: 1;
-}
-
-.eyebrow{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    margin-bottom: 16px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(45, 212, 191, 0.18), rgba(125, 211, 252, 0.18), rgba(167, 139, 250, 0.18));
-    background-size: 220% 220%;
-    color: var(--text-strong);
-    font-size: 0.9rem;
-    letter-spacing: 0.02em;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-    animation: badge-flow 10s ease-in-out infinite;
-}
-
-@keyframes badge-flow{
-    0%, 100%{
-        background-position: 0% 50%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-}
-
-.hero-mark{
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0 8px;
-    color: var(--accent);
-    font-size: 0.92rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-.hero-mark svg{
-    width: 24px;
-    height: 24px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 1.6;
-}
-
-.hero-mark line{
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.hero-mark circle{
-    fill: currentColor;
-    stroke: none;
-}
-
-.hero h1{
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.35rem, 5vw, 4.5rem);
-    line-height: 1.02;
-    letter-spacing: -0.03em;
-    font-weight: 400;
-    color: var(--text-strong);
-}
-
-.hero p{
-    margin: 0;
-    color: var(--muted);
-}
-
-.title-copy{
-    margin-top: 16px;
-    display: grid;
-    gap: 14px;
-    max-width: 680px;
-}
-
-.subtitle{
-    font-size: 1.08rem;
-    color: var(--text-strong);
-}
-
-.pills{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.pill{
-    padding: 8px 12px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, rgba(125, 211, 252, 0.18), rgba(167, 139, 250, 0.16));
-    border: 1px solid rgba(125, 211, 252, 0.34);
-    color: var(--text-strong);
-    font-size: 0.92rem;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-}
-
-.actions{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 22px;
-}
-
-.hero-strip{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.hero-chip{
-    padding: 12px 14px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-}
-
-.hero-chip .label{
-    display: block;
-    margin-bottom: 5px;
-    color: var(--subtle);
-    font-size: 0.78rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.hero-chip .value{
-    color: var(--text-strong);
-    font-size: 0.95rem;
-    line-height: 1.45;
-}
-
-.button{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 16px;
-    border-radius: 14px;
-    border: 1px solid transparent;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.button.primary{
-    background: linear-gradient(135deg, #28d7c1 0%, #5ab8ff 42%, #9b7bff 100%);
-    color: #04111c;
-    box-shadow: 0 14px 32px rgba(90, 184, 255, 0.24);
-}
-
-.button.secondary{
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.12);
-    color: var(--text-strong);
-}
-
-.button:hover{
-    transform: translateY(-1px);
-}
-
-.layout{
-    display: grid;
-    grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
-    gap: 22px;
-    margin-top: 22px;
-}
-
-.card{
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    background: var(--card);
-    backdrop-filter: blur(14px);
-    box-shadow: var(--shadow);
-}
-
-.section{
-    padding: 24px;
-}
-
-.section h2{
-    margin: 0 0 16px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.55rem;
-    letter-spacing: -0.02em;
-    font-weight: 700;
-    color: var(--text-strong);
-}
-
-.section p{
-    margin: 0;
-    color: var(--muted);
-}
-
-.section--major h2{
-    font-size: 1.9rem;
-    padding-left: 14px;
-    border-left: 3px solid var(--accent);
-}
-
-.section--featured h2{
-    font-size: 1.65rem;
-    padding-left: 12px;
-    border-left: 2px solid var(--accent);
-}
-
-.section + .section{
-    margin-top: 22px;
-}
-
-.section-head{
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 14px;
-}
-
-.section-note{
-    color: var(--subtle);
-    font-size: 0.96rem;
-    margin-top: 4px;
-}
-
-.grid-2{
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.info-card{
-    padding: 18px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.info-card h3{
-    margin: 0 0 8px;
-    font-size: 1rem;
-    color: var(--text-strong);
-}
-
-.info-card p,
-.info-card li{
-    color: var(--muted);
-    margin: 0;
-}
-
-.list-clean{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.list-clean li{
-    position: relative;
-    padding-left: 16px;
-    color: var(--muted);
-}
-
-.list-clean li::before{
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    transform: translateY(-50%);
-}
-
-.timeline{
-    display: grid;
-    gap: 14px;
-}
-
-.timeline-item{
-    padding: 18px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-.timeline-item::before{
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--accent), var(--accent-2));
-}
-
-.timeline-item strong{
-    display: block;
-    margin-bottom: 4px;
-    color: var(--text-strong);
-}
-
-.timeline-item span{
-    color: var(--subtle);
-}
-
-.pubs{
-    display: grid;
-    gap: 14px;
-}
-
-.pub{
-    padding: 18px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-left: 3px solid rgba(125, 211, 252, 0.68);
-}
-
-.pub + .pub{
-    margin-top: 10px;
-    padding-top: 22px;
-    border-top: none;
-}
-
-.pub .meta{
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 10px;
-    margin-bottom: 10px;
-    border-radius: 999px;
-    background: rgba(125, 211, 252, 0.14);
-    color: var(--text-strong);
-    font-size: 0.85rem;
-}
-
-.pub p{
-    margin: 0;
-    color: var(--muted);
-}
-
-.pub i{
-    color: var(--text-strong);
-}
-
-.aside{
-    display: grid;
-    gap: 14px;
-    align-self: start;
-}
-
-.aside .section{
-    position: relative;
-    overflow: hidden;
-    padding: 20px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
-    --section-accent: var(--accent);
-}
-
-.section--education{
-    --section-accent: var(--accent-3);
-    border-left: 3px solid var(--accent-3);
-}
-
-.section--experience{
-    --section-accent: var(--accent-2);
-    border-left: 3px solid var(--accent-2);
-}
-
-.section--contact{
-    --section-accent: var(--accent);
-    border-left: 3px solid var(--accent);
-}
-
-.aside .section::after{
-    content: "";
-    position: absolute;
-    inset: auto -18% -18% auto;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.aside .section-head{
-    align-items: center;
-}
-
-.section--education::after{
-    background: radial-gradient(circle, rgba(45, 212, 191, 0.18), transparent 70%);
-}
-
-.section--experience::after{
-    background: radial-gradient(circle, rgba(167, 139, 250, 0.18), transparent 70%);
-}
-
-.section--contact::after{
-    background: radial-gradient(circle, rgba(125, 211, 252, 0.18), transparent 70%);
-}
-
-.aside .section-head::before{
-    content: "";
-    width: 11px;
-    height: 11px;
-    border-radius: 4px;
-    background: var(--section-accent);
-    box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.12);
-    flex: 0 0 auto;
-}
-
-.section--education .section-head::before{
-    box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.12);
-}
-
-.section--experience .section-head::before{
-    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.12);
-}
-
-.section--contact .section-head::before{
-    box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.12);
-}
-
-.contact-grid{
-    display: grid;
-    gap: 12px;
-}
-
-.contact-item{
-    padding: 16px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.contact-item .label{
-    display: block;
-    margin-bottom: 4px;
-    color: var(--text-strong);
-    font-weight: 600;
-}
-
-.profile-grid{
-    display: grid;
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.profile-item{
-    padding: 16px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.035);
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.profile-item .label{
-    display: block;
-    margin-bottom: 4px;
-    color: var(--text-strong);
-    font-weight: 600;
-}
-
-.profile-item .value{
-    color: var(--subtle);
-    font-size: 0.95rem;
-}
-
-.profile-item a.value{
-    display: inline-block;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    color: var(--text-strong);
-}
-
-.footer{
-    padding: 20px 0 6px;
-    color: rgba(236, 243, 255, 0.6);
-    text-align: center;
-    font-size: 0.95rem;
-}
-
-.reveal{
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.is-visible{
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.back-to-top{
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 30;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 72px;
-    height: 48px;
-    padding: 0 16px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(8, 16, 29, 0.82);
-    color: var(--text);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(14px);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(10px);
-    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
-}
-
-.back-to-top:hover{
-    background: rgba(14, 25, 44, 0.96);
-}
-
-.back-to-top.is-visible{
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-a:focus-visible,
-button:focus-visible,
-.back-to-top:focus-visible{
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 4px rgba(125, 211, 252, 0.18);
-}
-
-@media (max-width: 980px){
-    .hero,
-    .layout{
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 680px){
-    .page{
-        padding: 16px 14px 28px;
-    }
-
-    .topbar{
-        top: 10px;
-        padding: 10px 12px;
-        border-radius: 22px;
-    }
-
-    .nav{
-        justify-content: flex-start;
-    }
-
-    .hero,
-    .section{
-        padding: 18px;
-    }
-
-    .grid-2{
-        grid-template-columns: 1fr;
-    }
-
-    .actions{
-        flex-direction: column;
-    }
-
-    .hero-strip{
-        grid-template-columns: 1fr;
-    }
-
-    .button{
-        width: 100%;
-    }
-}
-
-@media (prefers-reduced-motion: reduce){
-    html{
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after{
-        animation: none !important;
-        transition: none !important;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Satyabrat Rath — cryptography researcher at IIT Kharagpur working on lattice-based post-quantum cryptography and secure outsourcing.">
+
+    <title>Satyabrat Rath | Cryptography Research</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #222;
+            background: #fff;
+        }
+
+        a {
+            color: #174a8b;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .page {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 30px 24px;
+        }
+
+        /* Navigation */
+        .topbar {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 35px;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            padding-bottom: 12px;
+        }
+
+        .nav a {
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .nav a:hover {
+            color: #174a8b;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 30px;
+            align-items: center;
+            padding-bottom: 35px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .portrait img {
+            display: block;
+            width: 180px;
+            height: 215px;
+            object-fit: cover;
+        }
+
+        .eyebrow {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .hero-mark {
+            display: none;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2.7rem;
+            font-weight: normal;
+            color: #111;
+        }
+
+        .title-copy {
+            display: none;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-top: 15px;
+        }
+
+        .pill {
+            padding: 0;
+            border: 0;
+            background: none;
+            color: #555;
+            font-size: 0.92rem;
+        }
+
+        .pill:not(:last-child)::after {
+            content: " ·";
+            color: #aaa;
+        }
+
+        .hero-strip {
+            display: none;
+        }
+
+        /* Main layout */
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 45px;
+            margin-top: 35px;
+        }
+
+        .card {
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .section {
+            padding: 0 0 32px;
+        }
+
+        .section + .section {
+            margin-top: 0;
+        }
+
+        .section h2 {
+            margin: 0 0 14px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.55rem;
+            font-weight: normal;
+            color: #111;
+            padding: 0;
+            border: 0;
+        }
+
+        .section p {
+            margin: 0 0 10px;
+            color: #444;
+        }
+
+        .section-head {
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        /* Research */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+        }
+
+        .info-card {
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .info-card h3 {
+            margin: 0 0 6px;
+            font-size: 1rem;
+            color: #222;
+        }
+
+        .info-card p,
+        .info-card li {
+            color: #444;
+        }
+
+        .list-clean {
+            margin: 0;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .list-clean li {
+            padding-left: 2px;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            padding: 0 0 0 16px;
+            border: 0;
+            border-left: 2px solid #ddd;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .timeline-item::before {
+            display: none;
+        }
+
+        .timeline-item strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #222;
+        }
+
+        .timeline-item span,
+        .timeline-item p {
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        /* Publications */
+        .pubs {
+            display: grid;
+            gap: 20px;
+        }
+
+        .pub {
+            padding: 0 0 18px;
+            border: 0;
+            border-bottom: 1px solid #e5e5e5;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .pub + .pub {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .pub .meta {
+            display: block;
+            padding: 0;
+            margin-bottom: 5px;
+            border: 0;
+            background: none;
+            color: #666;
+            font-size: 0.88rem;
+        }
+
+        .pub p {
+            color: #333;
+        }
+
+        /* Sidebar */
+        .aside {
+            display: grid;
+            gap: 32px;
+            align-self: start;
+        }
+
+        .aside .section {
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .aside .section::after,
+        .aside .section-head::before {
+            display: none;
+        }
+
+        /* Contact */
+        .profile-grid,
+        .contact-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .profile-item,
+        .contact-item {
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .profile-item .label,
+        .contact-item .label {
+            display: block;
+            margin-bottom: 3px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .profile-item .value {
+            color: #174a8b;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 25px 0 5px;
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Remove animations */
+        .reveal {
+            opacity: 1;
+            transform: none;
+        }
+
+        .back-to-top {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+
+            .hero,
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .portrait img {
+                width: 150px;
+                height: 180px;
+            }
+
+            .layout {
+                gap: 20px;
+            }
+
+            .aside {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 20px 16px;
+            }
+
+            .nav {
+                gap: 12px 18px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<div class="page">
-    <header class="topbar">
-        <nav class="nav" aria-label="Primary">
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#education">Education</a>
-            <a href="#experience">Experience</a>
-            <a href="#publications">Publications</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero card reveal" id="home">
-            <div class="portrait">
-                <img src="Image_Update1.jpeg" alt="Satyabrat Rath">
-            </div>
-            <div>
-                <div class="eyebrow">Post Doctoral Fellow at IIT Kharagpur</div>
-                <div class="hero-mark" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" role="img" aria-label="Lattice motif">
-                        <line x1="6" y1="6" x2="12" y2="12"></line>
-                        <line x1="12" y1="6" x2="6" y2="12"></line>
-                        <line x1="12" y1="12" x2="18" y2="18"></line>
-                        <line x1="12" y1="12" x2="18" y2="6"></line>
-                        <circle cx="6" cy="6" r="1.3"></circle>
-                        <circle cx="12" cy="6" r="1.3"></circle>
-                        <circle cx="18" cy="6" r="1.3"></circle>
-                        <circle cx="6" cy="12" r="1.3"></circle>
-                        <circle cx="12" cy="12" r="1.3"></circle>
-                        <circle cx="18" cy="12" r="1.3"></circle>
-                        <circle cx="6" cy="18" r="1.3"></circle>
-                        <circle cx="12" cy="18" r="1.3"></circle>
-                        <circle cx="18" cy="18" r="1.3"></circle>
-                    </svg>
-                    <span>I think therefore I am</span>
-                </div>
-                <h1>Satyabrat Rath</h1>
-                <div class="title-copy">
-                </div>
-                <div class="pills" aria-label="Research tags">
-                    <span class="pill">Lattice-based cryptography</span>
-                    <span class="pill">Post-quantum cryptography</span>
-                    <span class="pill">Secure outsourcing</span>
-                    <span class="pill">Verifiable computation</span>
-                </div>
-                
-                <div class="hero-strip" aria-label="Research snapshot">
-                    <div class="hero-chip">
-                        <span class="label">Current Focus</span>
-                        <span class="value">Lattice-based cryptography</span>
-                    </div>
-                    <div class="hero-chip">
-                        <span class="label">Other Expertise</span>
-                        <span class="value">Secure outsourcing for verifiable computation</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="page">
 
-        <div class="layout">
-            <div>
-                <section class="section card reveal section--major" id="about">
-                    <div class="section-head">
-                        <div>
+        <!-- Navigation -->
+        <header class="topbar">
+            <nav class="nav" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#research">Research</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#publications">Publications</a>
+                <a href="#professional-activities">Professional Activities</a>
+                <a href="#teaching">Teaching</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+
+            <!-- Hero -->
+            <section class="hero" id="home">
+
+                <div class="portrait">
+                    <img src="Image_Update1.jpeg" alt="Satyabrat Rath">
+                </div>
+
+                <div>
+
+                    <div class="eyebrow">
+                        Institute Post Doctoral Fellow at IIT Kharagpur
+                    </div>
+
+                    <h1>Satyabrat Rath</h1>
+
+                    <div class="pills">
+                        <span class="pill">Lattice-based cryptography</span>
+                        <span class="pill">Post-quantum cryptography</span>
+                        <span class="pill">Secure outsourcing</span>
+                        <span class="pill">Verifiable computation</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div class="layout">
+
+                <!-- Main column -->
+                <div>
+
+                    <!-- About -->
+                    <section class="section" id="about">
+
+                        <div class="section-head">
                             <h2>About</h2>
                         </div>
-                    </div>
-                    <p>
-                        I am a passionate pure mathematician in the world of cryptography. During my Ph.D., I worked on designing secure
-                        outsourcing protocols for verifiable computations under the guidance of
-                        <a href="https://macs.nitk.ac.in/faculty/jothi-ramalingam" target="_blank" rel="noreferrer">Prof. R Jothi Ramalingam</a>.
-                        After my Ph.D., I worked with
-                        <a href="https://iiitk.ac.in/Dr.-R.-Kabaleeshwaran/page" target="_blank" rel="noreferrer">Dr. R Kabaleeshwaran</a>
-                        on secure post-quantum digital signature schemes from lattices.
-                        I am currently an Institute Postdoctoral Fellow, working with
-                        <a href="https://monosijm.github.io/" target="_blank" rel="noreferrer">Prof. Monosij Maitra</a>
-                        at IIT Kharagpur.
-                    </p>
-                </section>
 
-                <section class="section card reveal section--featured" id="research">
-                    <div class="section-head">
-                        <div>
+                        <p>
+                            I am a passionate pure mathematician in the world of cryptography.
+                            During my Ph.D., I worked on designing secure outsourcing protocols
+                            for verifiable computations under the guidance of
+                            <a href="https://macs.nitk.ac.in/faculty/jothi-ramalingam"
+                                target="_blank" rel="noreferrer">
+                                Prof. R Jothi Ramalingam
+                            </a>.
+                            After my Ph.D., I worked with
+                            <a href="https://iiitk.ac.in/Dr.-R.-Kabaleeshwaran/page"
+                                target="_blank" rel="noreferrer">
+                                Dr. R Kabaleeshwaran
+                            </a>
+                            on secure post-quantum digital signature schemes from lattices.
+                            I am currently an Institute Postdoctoral Fellow, working with
+                            <a href="https://monosijm.github.io/"
+                                target="_blank" rel="noreferrer">
+                                Prof. Monosij Maitra
+                            </a>
+                            at IIT Kharagpur.
+                        </p>
+
+                    </section>
+
+
+                    <!-- Research Interests -->
+                    <section class="section" id="research">
+
+                        <div class="section-head">
                             <h2>Research Interests</h2>
                         </div>
-                    </div>
-                    <div class="grid-2">
-                        <div class="info-card">
-                            <h3>Primary Themes</h3>
-                            <ul class="list-clean">
-                                <li>Cryptography</li>
-                                <li>Post-Quantum Cryptography</li>
-                                <li>Lattice-Based Protocols</li>
-                            </ul>
-                        </div>
-                        <div class="info-card">
-                            <h3>Other Directions</h3>
-                            <ul class="list-clean">
-                                <li>Secure Outsourcing</li>
-                                <li>Secure and Verifiable Computation</li>
-                                <li>Quantum Key Distribution</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
 
-                <section class="section card reveal section--major" id="publications">
-                    <div class="section-head">
-                        <div>
+                        <div class="grid-2">
+
+                            <div class="info-card">
+                                <h3>Primary Themes</h3>
+
+                                <ul class="list-clean">
+                                    <li>Cryptography</li>
+                                    <li>Post-Quantum Cryptography</li>
+                                    <li>Lattice-Based Protocols</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card">
+                                <h3>Other Directions</h3>
+
+                                <ul class="list-clean">
+                                    <li>Secure Outsourcing</li>
+                                    <li>Secure and Verifiable Computation</li>
+                                    <li>Quantum Key Distribution</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Publications -->
+                    <section class="section" id="publications">
+
+                        <div class="section-head">
                             <h2>Publications</h2>
                         </div>
-                    </div>
-                    <div class="pubs">
-                        <article class="pub">
-                            <div class="meta">2026 | Scientific Reports (SCIE, Q1, IF: 3.9)</div>
-                            <p>
-                                Veeresh R. Maned, <strong>Satyabrat Rath</strong>, Jothi Ramalingam, Lakshmidevi Kuppusamy.
-                                <i>Enhancing IoT Security through Cloud-Assisted Post-Quantum Authentication: A Case Study with UOV Signatures</i>.
-                                <a href="https://doi.org/10.1038/s41598-026-43611-8" target="_blank" rel="noreferrer">Scientific Reports ↗</a>
-                            </p>
-                        </article>
-                        <article class="pub">
-                            <div class="meta">2026 | EPJ Quantum Technology (SCIE, Q1, IF: 5.6)</div>
-                            <p>
-                                Veeresh R. Maned, <strong>Satyabrat Rath</strong>, Jothi Ramalingam, Lakshmidevi Kuppusamy.
-                                <i>Enhancing Quantum Key Distribution via McEliece-Based Hybrid PQC-QKD Architecture</i>.
-                                <a href="https://doi.org/10.1140/epjqt/s40507-026-00498-8" target="_blank" rel="noreferrer">EPJ Quantum Technology ↗</a>
-                            </p>
-                        </article>
-                        <article class="pub">
-                            <div class="meta">2025 | IEEE TIFS (SCI, Q1, IF: 8.0)</div>
-                            <p>
-                                <strong>Satyabrat Rath</strong>, Jothi Ramalingam, Sohham Seal.
-                                <i>A Note on "Secure and Efficient Outsourcing of PCA-Based Face Recognition"</i>.
-                                <a href="https://doi.org/10.1109/TIFS.2025.3526057" target="_blank" rel="noreferrer">IEEE TIFS ↗</a>
-                            </p>
-                        </article>
-                        <article class="pub">
-                            <div class="meta">2024 | Computers and Electrical Engineering (SCI, Q1, IF: 4.9)</div>
-                            <p>
-                                Jothi Ramalingam, <strong>Satyabrat Rath</strong>, Lakshmi Kuppusamy, Cheng Chi-Lee.
-                                <i>Accelerating QKD Post-Processing by Secure Offloading of Information Reconciliation</i>.
-                                <a href="https://doi.org/10.1016/j.compeleceng.2024.109721" target="_blank" rel="noreferrer">Computers and Electrical Engineering ↗</a>
-                            </p>
-                        </article>
-                        <article class="pub">
-                            <div class="meta">2024 | IEEE Access (SCI, Q2, IF: 3.6)</div>
-                            <p>
-                                <strong>Satyabrat Rath</strong>, Jothi Ramalingam.
-                                <i>Comment on "Outsourcing Eigen-Decomposition and Singular Value Decomposition of Large Matrix to a Public Cloud"</i>.
-                                <a href="https://doi.org/10.1109/ACCESS.2024.3443095" target="_blank" rel="noreferrer">IEEE Access ↗</a>
-                            </p>
-                        </article>
-                        <article class="pub">
-                            <div class="meta">2024 | Mathematics (SCI, Q1, IF: 2.2)</div>
-                            <p>
-                                <strong>Satyabrat Rath</strong>, Jothi Ramalingam, Cheng-Chi Lee.
-                                <i>On Efficient Parallel Secure Outsourcing of Modular Exponentiation to Cloud for IoT Applications</i>.
-                                <a href="https://doi.org/10.3390/math12050713" target="_blank" rel="noreferrer">Mathematics ↗</a>
-                            </p>
-                        </article>
-                        <article class="pub">
-                            <div class="meta">2023 | SN Computer Science (Scopus)</div>
-                            <p>
-                                <strong>Satyabrat Rath</strong>, Jothi Rangasamy.
-                                <i>Privacy-Preserving Outsourcing Algorithm for Solving Large Systems of Linear Equations</i>.
-                                <a href="https://doi.org/10.1007/s42979-023-02093-5" target="_blank" rel="noreferrer">SN Computer Science ↗</a>
-                            </p>
-                        </article>
-                    </div>
-                </section>
-            </div>
 
-            <aside class="aside">
-                <section class="section card reveal section--education" id="education">
-                    <div class="section-head">
-                        <div>
+                        <div class="pubs">
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2026 | Scientific Reports (SCIE, Q1, IF: 3.9)
+                                </div>
+
+                                <p>
+                                    Veeresh R. Maned, <strong>Satyabrat Rath</strong>,
+                                    Jothi Ramalingam, Lakshmidevi Kuppusamy.
+                                    <i>
+                                        Enhancing IoT Security through Cloud-Assisted
+                                        Post-Quantum Authentication: A Case Study with UOV Signatures
+                                    </i>.
+                                    <a href="https://doi.org/10.1038/s41598-026-43611-8"
+                                        target="_blank" rel="noreferrer">
+                                        Scientific Reports ↗
+                                    </a>
+                                </p>
+                            </article>
+
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2026 | EPJ Quantum Technology (SCIE, Q1, IF: 5.6)
+                                </div>
+
+                                <p>
+                                    Veeresh R. Maned, <strong>Satyabrat Rath</strong>,
+                                    Jothi Ramalingam, Lakshmidevi Kuppusamy.
+                                    <i>
+                                        Enhancing Quantum Key Distribution via McEliece-Based
+                                        Hybrid PQC-QKD Architecture
+                                    </i>.
+                                    <a href="https://doi.org/10.1140/epjqt/s40507-026-00498-8"
+                                        target="_blank" rel="noreferrer">
+                                        EPJ Quantum Technology ↗
+                                    </a>
+                                </p>
+                            </article>
+
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2025 | IEEE TIFS (SCI, Q1, IF: 8.0)
+                                </div>
+
+                                <p>
+                                    <strong>Satyabrat Rath</strong>,
+                                    Jothi Ramalingam, Sohham Seal.
+                                    <i>
+                                        A Note on "Secure and Efficient Outsourcing
+                                        of PCA-Based Face Recognition"
+                                    </i>.
+                                    <a href="https://doi.org/10.1109/TIFS.2025.3526057"
+                                        target="_blank" rel="noreferrer">
+                                        IEEE TIFS ↗
+                                    </a>
+                                </p>
+                            </article>
+
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2024 | Computers and Electrical Engineering
+                                    (SCI, Q1, IF: 4.9)
+                                </div>
+
+                                <p>
+                                    Jothi Ramalingam, <strong>Satyabrat Rath</strong>,
+                                    Lakshmi Kuppusamy, Cheng Chi-Lee.
+                                    <i>
+                                        Accelerating QKD Post-Processing by Secure Offloading
+                                        of Information Reconciliation
+                                    </i>.
+                                    <a href="https://doi.org/10.1016/j.compeleceng.2024.109721"
+                                        target="_blank" rel="noreferrer">
+                                        Computers and Electrical Engineering ↗
+                                    </a>
+                                </p>
+                            </article>
+
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2024 | IEEE Access (SCI, Q2, IF: 3.6)
+                                </div>
+
+                                <p>
+                                    <strong>Satyabrat Rath</strong>,
+                                    Jothi Ramalingam.
+                                    <i>
+                                        Comment on "Outsourcing Eigen-Decomposition
+                                        and Singular Value Decomposition of Large Matrix
+                                        to a Public Cloud"
+                                    </i>.
+                                    <a href="https://doi.org/10.1109/ACCESS.2024.3443095"
+                                        target="_blank" rel="noreferrer">
+                                        IEEE Access ↗
+                                    </a>
+                                </p>
+                            </article>
+
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2024 | Mathematics (SCI, Q1, IF: 2.2)
+                                </div>
+
+                                <p>
+                                    <strong>Satyabrat Rath</strong>,
+                                    Jothi Ramalingam, Cheng-Chi Lee.
+                                    <i>
+                                        On Efficient Parallel Secure Outsourcing of
+                                        Modular Exponentiation to Cloud for IoT Applications
+                                    </i>.
+                                    <a href="https://doi.org/10.3390/math12050713"
+                                        target="_blank" rel="noreferrer">
+                                        Mathematics ↗
+                                    </a>
+                                </p>
+                            </article>
+
+
+                            <article class="pub">
+                                <div class="meta">
+                                    2023 | SN Computer Science (Scopus)
+                                </div>
+
+                                <p>
+                                    <strong>Satyabrat Rath</strong>,
+                                    Jothi Rangasamy.
+                                    <i>
+                                        Privacy-Preserving Outsourcing Algorithm for
+                                        Solving Large Systems of Linear Equations
+                                    </i>.
+                                    <a href="https://doi.org/10.1007/s42979-023-02093-5"
+                                        target="_blank" rel="noreferrer">
+                                        SN Computer Science ↗
+                                    </a>
+                                </p>
+                            </article>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Professional Activities -->
+                    <section class="section" id="professional-activities">
+
+                        <div class="section-head">
+                            <h2>Professional Activities</h2>
+                        </div>
+
+                        <div class="timeline">
+
+                            <div class="timeline-item">
+                                <strong>Journal Reviewer</strong>
+
+                                <p>
+                                    Reviewer for
+                                    <i>The Journal of Supercomputing</i>
+                                    and
+                                    <i>Cluster Computing</i>.
+                                </p>
+                            </div>
+
+
+                            <div class="timeline-item">
+                                <strong>Conference Sub-Reviewer</strong>
+
+                                <p>
+                                    ACM CCS 2026, ACNS 2026,
+                                    ASIACRYPT 2027, and PKC 2027.
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Teaching Experience -->
+                    <section class="section" id="teaching">
+
+                        <div class="section-head">
+                            <h2>Teaching Experience</h2>
+                        </div>
+
+                        <div class="timeline">
+
+                            <div class="timeline-item">
+                                <strong>
+                                    Instructor — Programming and Data Structures Lab
+                                </strong>
+
+                                <p>
+                                    Indian Institute of Technology Kharagpur · Autumn 2026
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- Sidebar -->
+                <aside class="aside">
+
+                    <!-- Education -->
+                    <section class="section" id="education">
+
+                        <div class="section-head">
                             <h2>Education</h2>
                         </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <strong>Ph.D. in Mathematical and Computational Sciences</strong>
-                            <p>National Institute of Technology Karnataka, Surathkal, 2025</p>
 
-    <p>Thesis: Secure Offloading of Scientific and Cryptographic Computations</p>
-                        </div>
-                        <div class="timeline-item">
-                            <strong>Integrated M.Sc. in Mathematics</strong>
-                            <span>National Institute of Technology Rourkela, 2019</span>
-                        </div>
-                    </div>
-                </section>
+                        <div class="timeline">
 
-                <section class="section card reveal section--experience" id="experience">
-                    <div class="section-head">
-                        <div>
+                            <div class="timeline-item">
+
+                                <strong>
+                                    Ph.D. in Mathematical and Computational Sciences
+                                </strong>
+
+                                <p>
+                                    National Institute of Technology Karnataka,
+                                    Surathkal, 2025
+                                </p>
+
+                                <p>
+                                    Thesis:
+                                    <i>
+                                        Secure Offloading of Scientific and
+                                        Cryptographic Computations
+                                    </i>
+                                </p>
+
+                            </div>
+
+
+                            <div class="timeline-item">
+
+                                <strong>
+                                    Integrated M.Sc. in Mathematics
+                                </strong>
+
+                                <span>
+                                    National Institute of Technology Rourkela, 2019
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Experience -->
+                    <section class="section" id="experience">
+
+                        <div class="section-head">
                             <h2>Experience</h2>
                         </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <strong>Institute Post Doctoral Fellow</strong>
-                            <p>Indian Institute of Technology Kharagpur · 2026-present</p>
-                            <p>Designing advanced functional encryption primitivies</p>
-                        </div>
-                        <div class="timeline-item">
-                            <strong>Research Associate</strong>
-                            <p>Indian Institute of Technology Kharagpur · 2025</p>
-                            <p>Designing advanced functional encryption primitivies</p>
-                        </div>
-                        <div class="timeline-item">
-                            <strong>Research Associate</strong>
-                            <p>IIITDM Kurnool · 2024-2025</p>
-                            <p>Designing and Developing secure post quantum public key infrastructure (Lattice based Digital Signature)</p>
-                        </div>
-                    </div>
-                </section>
 
-                <section class="section card reveal section--contact" id="contact">
-                    <div class="section-head">
-                        <div>
+                        <div class="timeline">
+
+                            <div class="timeline-item">
+
+                                <strong>
+                                    Institute Post Doctoral Fellow
+                                </strong>
+
+                                <p>
+                                    Indian Institute of Technology Kharagpur ·
+                                    2026–present
+                                </p>
+
+                                <p>
+                                    Designing advanced functional encryption primitives.
+                                </p>
+
+                            </div>
+
+
+                            <div class="timeline-item">
+
+                                <strong>
+                                    Research Associate
+                                </strong>
+
+                                <p>
+                                    Indian Institute of Technology Kharagpur · 2025
+                                </p>
+
+                                <p>
+                                    Designing advanced functional encryption primitives.
+                                </p>
+
+                            </div>
+
+
+                            <div class="timeline-item">
+
+                                <strong>
+                                    Research Associate
+                                </strong>
+
+                                <p>
+                                    IIITDM Kurnool · 2024–2025
+                                </p>
+
+                                <p>
+                                    Designing and developing secure post-quantum
+                                    public key infrastructure using lattice-based
+                                    digital signatures.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- Contact -->
+                    <section class="section" id="contact">
+
+                        <div class="section-head">
                             <h2>Contact</h2>
                         </div>
-                    </div>
-                    <div class="profile-grid" aria-label="Academic profiles">
-                        <div class="profile-item">
-                            <span class="label">Google Scholar</span>
-                            <a class="value" href="https://scholar.google.com/citations?user=_2wixgYAAAAJ&hl=en" target="_blank" rel="noreferrer">View Google Scholar profile</a>
+
+
+                        <div class="profile-grid">
+
+                            <div class="profile-item">
+
+                                <span class="label">
+                                    Google Scholar
+                                </span>
+
+                                <a class="value"
+                                    href="https://scholar.google.com/citations?user=_2wixgYAAAAJ&hl=en"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    View Google Scholar profile
+                                </a>
+
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="contact-grid">
-                        <div class="contact-item">
-                            <span class="label">Email</span>
-                            <p>
-        [mylastname][myfirstname]26196 [at] gmail [dot] com
-    </p>
 
-    <p>
-        [myfirstname] [at] cse [dot] iitkgp [dot] ac [dot] in
-    </p>
+
+                        <div class="contact-grid">
+
+                            <div class="contact-item">
+
+                                <span class="label">
+                                    Email
+                                </span>
+
+                                <p>
+                                    [mylastname][myfirstname]26196 [at] gmail [dot] com
+                                </p>
+
+                                <p>
+                                    [myfirstname] [at] cse [dot] iitkgp [dot] ac [dot] in
+                                </p>
+
+                            </div>
+
+
+                            <div class="contact-item">
+
+                                <span class="label">
+                                    GitHub
+                                </span>
+
+                                <a href="https://github.com/Satyabrat2601"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    github.com/Satyabrat2601
+                                </a>
+
+                            </div>
 
                         </div>
-                        <div class="contact-item">
-                            <span class="label">GitHub</span>
-                            <a href="https://github.com/Satyabrat2601" target="_blank" rel="noreferrer">github.com/Satyabrat2601</a>
-                        </div>
-                    </div>
-                </section>
-            </aside>
-        </div>
-    </main>
 
-    <footer class="footer">
-        © <span id="year"></span> Satyabrat Rath
-    </footer>
-</div>
-<a class="back-to-top" href="#home" aria-label="Back to top">↑ Top</a>
+                    </section>
 
-<script>
-const revealElements = document.querySelectorAll('.reveal');
-const backToTop = document.querySelector('.back-to-top');
-const navLinks = Array.from(document.querySelectorAll('.nav a'));
-const sections = navLinks
-    .map((link) => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
+                </aside>
 
-document.getElementById('year').textContent = new Date().getFullYear();
+            </div>
 
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.14
-});
+        </main>
 
-revealElements.forEach((element) => revealObserver.observe(element));
 
-const navObserver = new IntersectionObserver((entries) => {
-    const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        <footer class="footer">
+            © <span id="year"></span> Satyabrat Rath
+        </footer>
 
-    if (!visible) {
-        return;
-    }
+    </div>
 
-    navLinks.forEach((link) => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target === visible.target) {
-            link.setAttribute('aria-current', 'page');
-        } else {
-            link.removeAttribute('aria-current');
-        }
-        link.classList.toggle('is-active', target === visible.target);
-    });
-}, {
-    threshold: [0.2, 0.35, 0.55],
-    rootMargin: '-15% 0px -55% 0px'
-});
 
-sections.forEach((section) => navObserver.observe(section));
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
 
-const toggleBackToTop = () => {
-    const show = window.scrollY > 420;
-    backToTop.classList.toggle('is-visible', show);
-};
-
-toggleBackToTop();
-window.addEventListener('scroll', toggleBackToTop, { passive: true });
-</script>
 </body>
+
 </html>
